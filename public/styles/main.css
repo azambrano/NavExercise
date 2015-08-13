@@ -1,18 +1,322 @@
 @import "fonts.css";
 
 body {
-  background: #ec008c;
-  color: #fff;
+  padding: 0px;
+  margin: 0px;
+  overflow-y: hidden;
 }
 
-h1 {
+body > nav {  
+  z-index: 20;
+  background: #ec008c;
+  color: #eee;
+  display: flex;
+  height: 60px;
+}
+
+body  > nav > div > #logo{
+  padding: 0px;
+  z-index: 10;
+  display: block;
+}
+body.open #overlay{
+ opacity: 1;
+}
+#overlay {
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;  
+  transition: opacity 0.8s ease-out;
+  overflow: hidden;
+}
+nav ul{  
+  padding: 0; 
+  list-style: none;  
+  display: block;  
+  height: 100%  
+}
+
+nav > .primary {
+    margin: 0px 0px 0px 0px;
+}
+
+ul > li{
+  display: inline-block;
+  list-style-type: none;
+  text-align: center;         
+}
+
+nav > ul.primary > li > a{  
+  color: #eee;
+  display: block;  
+  padding: 12px 24px 12px;
+  font: 21px/48px HUGEAvantGardeBold;
+  text-decoration: none;  
+  text-align: center;  
+}
+nav > ul.primary > li > a:hover{  
+  color: #ec008c; 
+  background-color: #eee;   
+}
+nav > ul.primary > li > ul {
+  visibility: hidden;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  margin: 0;
-  font: 20vmin/1 HUGEAvantGardeBold;
-  letter-spacing: -0.06em;
-  text-align: center;
+}
+
+body > header.content{
+  background-image: url('/images/background-image.jpg');
+  background-repeat: no-repeat;    
+  background-size: cover;
+  display: block;
+  width: 100%;
+  background-position: 0 center;
+  position: relative;  
+  height: 240px;
+  z-index: -1;
+}
+
+body > section > header.head-text{  
+  color: #eee;
+  font: 44px/48px HUGEAvantGardeBold;
+  vertical-align: middle;  
+  padding: 50px 0px 50px 0px;
+}
+
+.head-text span{
+  position: relative;   
+  color: #000;
+}
+
+body > section > article{
+  width: 100%;
+  padding-top: 0px; 
+}
+
+body > section {    
+  padding: 0px 24px 0 24px;
+}
+
+body > section > article > p {  
+  font: 24px/36px Galaxie;  
+  width: 100%;  
+  margin: 0 auto;
+}
+
+/*******Mobile*******/
+@media (max-width: 768px){
+    /*Animation*/
+  nav > .primary.open{    
+    left:0px;
+    transition : left 1s;    
+  } 
+  nav > .primary {    
+    left:-800px;
+    transition : left 1s;
+  }
+  nav > ul {    
+    position: absolute;
+    display: table;
+    top: 60px;
+    left: 0px;
+    background-color: #fff;
+    z-index: 10;
+    width: 90%;
+  }
+
+  nav > div {
+    padding: 20px 24px 20px 24px;
+    width: 24px;
+    cursor: pointer;    
+    background-position-x: -50px;        
+  }
+  
+  nav > div.navLogoOpen {
+    background-image: url('/images/HUGE-white.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position-x: 0px;    
+    display: block;
+    margin: 20px 24px 20px 24px; 
+    transition: background-position-x 1s;   
+  }
+  nav > div.navLogo > #logo{
+    position: relative;            
+  }
+  nav > div.navLogo > #logo:before{
+    content: "";
+    position: absolute;    
+    top: -2px;
+    width: 24px;
+    height: 5px;
+    background: white;
+    left: 0px;
+    box-shadow: 0 10px 0 0 white, 0 20px 0 0 white;        
+  }  
+  nav > ul.primary > li{   
+    width: 100%;
+  } 
+  nav > ul.primary > li:first-child{   
+    margin-top: 12px;
+  }  
+  nav > ul.primary > li:last-child:after{
+    position: absolute;
+    content: '© 2014 Huge. All Rights Reserved.';
+    padding-left: 96px;
+    bottom: 55px;
+    font : 12px/16px 'Helvetica Neue Regular';   
+    color: #000;
+    left: -70px;
+    height: 48px;
+  }
+  nav > ul.primary > li > a{  
+    color: #000;      
+    text-align: left;  
+    padding: 0px 0px 0px 24px;
+  }
+  nav > ul.primary > li > a:hover{  
+    color: #ec008c; 
+    background-color: #eee;   
+  }
+  nav > ul.primary > li.subnav > a:after {
+    content: ">";
+    display: inline-block;
+    transform: rotate(90deg) scaleY(1.4);
+    color: #ec008c;    
+    position: absolute;
+    right: 24px;
+    transition: transform 1s;
+  } 
+  nav > ul.primary > li.subnav.open > a:after {
+    content: ">";
+    display: inline-block;
+    transform: rotate(-90deg) scaleY(1.4);
+    color: #ec008c;    
+    position: absolute;
+    right: 24px;
+    transition: transform 1s; 
+  }  
+
+  /*********Handler subnav*********/
+  nav > ul.primary > li.subnav.open > ul {
+    visibility: visible;
+    position: relative;
+  }
+  nav > ul.primary > li.subnav.open > ul > li {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  nav > ul.primary > li.subnav.open > ul > li > a:hover{
+    color: #ec008c; 
+    background-color: #eee;   
+  }
+  nav > ul.primary > li.subnav.open > ul > li > a{
+    color: #000;
+    text-align: left;  
+    padding: 0px 0px 0px 24px;
+    font: 16px/48px Galaxie;
+    text-decoration: none;
+    display: block;
+  }
+  .navLogoOpen #navClose{
+    background-image: url(/images/toggle-close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;    
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 17px 24px 0px 24px;       
+  }
+}
+
+/*****Desktop******/
+@media (min-width: 768px){
+  body > nav {      
+    height: 72px; 
+  }
+
+  body  > nav > div {
+    padding: 24px 48px 24px 24px;        
+  }
+
+  body  > nav > div > #logo{
+    width: 60px;
+    height: 24px;    
+    background-image: url("/images/huge.png");
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 60px;        
+  }
+
+  body > header.content{
+    height:640px;
+    position:absolute;
+    background-position: center center;
+  }    
+
+  body > section > header.head-text{  
+    color: #eee;
+    font: 120px/132px HUGEAvantGardeBold;    
+    min-height: 640px;
+    text-align: center;  
+    padding: 0;
+    display: table;
+    max-width: 970px;
+    margin: auto;
+  } 
+  .head-text span{   
+    color: #eee;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  body > section > article{
+    width: 100%;
+    padding-top: 60px; 
+  }
+
+  body > section > article > p {  
+    font: 24px/36px Galaxie;  
+    width: 968px;  
+    margin: 0 auto;
+  }
+
+  /*********Handler subnav*********/
+  nav > ul.primary > li.subnav.open {
+    background-color: #fff;  
+    font: 16px/48px Galaxie; 
+  }
+  nav > ul.primary > li.subnav.open a {
+    color: #ec008c;  
+    text-decoration: none;     
+  }
+  nav > ul.primary > li.subnav.open > ul {    
+    visibility: visible;
+    position: absolute;
+    background-color: #fff;
+    z-index: 30;
+    height: auto;
+  }
+  nav > ul.primary > li.subnav.open > ul > li{    
+    float: left;
+    clear: left;  
+    width: 100%;
+    text-align: left;     
+  }
+  nav > ul.primary > li.subnav.open > ul > li:hover{  
+    background-color: #eee;       
+  }
+  nav > ul.primary > li.subnav.open > ul > li > a{  
+    color: #000;  
+    padding: 0px 24px 0px 24px; 
+    display: block;
+  }
+  nav > ul.primary > li.subnav.open > ul > li > a:hover{  
+    color: #ec008c;   
+  }
 }
